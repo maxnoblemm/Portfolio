@@ -1,7 +1,7 @@
 # Max Manwaring-Mueller – Interactive Portfolio
-Welcome! This is the web-based portfolio of Max Manwaring-Mueller, showcasing selected projects, publications, and creative work.
+Welcome! This is the web-based portfolio showcasing selected projects, publications, and creative work.
 
-All work featured here has been created by or contributed to by Max, spanning scientific research, data visualization, cover art, and interactive design.
+All work featured here has been created or contributed to by Max, spanning scientific research, art, and interactive design.
 
 🌐 Live Portfolio
 You can view the live site here: Visit Portfolio
