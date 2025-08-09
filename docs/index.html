@@ -1,0 +1,142 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+  <script type="module" crossorigin src="/interactive-portfolio/assets/index-CAPtBSC9.js"></script>
+  <link rel="stylesheet" crossorigin href="/interactive-portfolio/assets/index-CAn2fgMC.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#science">Science</a>
+      <a href="#art">Art</a>
+      <a href="#cv">CV & Resume</a>
+      <a href="#social">Social</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <canvas id="interactive-canvas"></canvas>
+    </section>
+
+    <!-- Publications (fan-out section) -->
+    <section class="papers-section" id="pubs-section">
+      <div class="papers-container" id="pubs-container">
+        <div class="stack-label" id="label-pubs">Publications</div>
+
+        <div class="paper" style="--i:0;" data-cover="SubstrateStiffness.png" data-id="pub-0">
+          <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+        <div class="paper" style="--i:1;" data-cover="ImmunologicalBiomarkers.png" data-id="pub-1">
+          <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+        <div class="paper" style="--i:2;" data-cover="GastroenterologyDDW2025.png" data-id="pub-2">
+          <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+        <div class="paper" style="--i:3;" data-cover="CellReportsAD.png" data-id="pub-3">
+            <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications details -->
+    <section class="details-section" id="pubs-details">
+      <h2 class="details-heading">Publications</h2>
+
+      <article class="detail-card" id="pub-0">
+        <h3 class="detail-title">Substrate stiffness dictates unique doxorubicin-induced senescence-associated secretory phenotypes and transcriptomic signatures in human pulmonary fibroblasts</h3>
+        <p class="detail-abstract">
+          Cells are subjected to dynamic mechanical environments which impart forces and induce cellular responses. In age-related conditions like pulmonary fibrosis, there is both an increase in tissue stiffness and an accumulation of senescent cells. While senescent cells produce a senescence-associated secretory phenotype (SASP), the impact of physical stimuli on both cellular senescence and the SASP is not well understood. Here, we show that mechanical tension, modeled using cell culture substrate rigidity, influences senescent cell markers like SA-β-gal and secretory phenotypes. Comparing human primary pulmonary fibroblasts (IMR-90) cultured on physiological (2 kPa), fibrotic (50 kPa), and plastic (approximately 3 GPa) substrates, followed by senescence induction using doxorubicin, we identified unique high-stiffness-driven secretory protein profiles using mass spectrometry and transcriptomic signatures, both showing an enrichment in collagen proteins. Consistently, clusters of p21 + cells are seen in fibrotic regions of bleomycin induced pulmonary fibrosis in mice. Computational meta-analysis of single-cell RNA sequencing datasets from human interstitial lung disease confirmed these stiffness SASP genes are highly expressed in disease fibroblasts and strongly correlate with mechanotransduction and senescence-related pathways. Thus, mechanical forces shape cell senescence and their secretory phenotypes.
+        </p>
+      </article>
+
+      <article class="detail-card" id="pub-1">
+        <h3 class="detail-title">Immunological Biomarkers of Aging</h3>
+        <p class="detail-abstract">
+            The immune system has long been recognized for its critical role in the elimination of pathogens and the development of autoimmune diseases, but recent evidence demonstrates that it also contributes to noncommunicable diseases associated with biological aging processes, such as cancer, cardiovascular disease, neurodegeneration, and frailty. This review examines immunological biomarkers of aging, focusing on how the immune system evolves with age and its impact on health and disease. It discusses the historical development of immunological assessments, technological advancements, and the creation of novel biomarkers and models to study immune aging. We also explore the clinical implications of immune aging, such as increased susceptibility to infectious diseases, poor vaccine responses, and a higher incidence of noncommunicable diseases. In summary, we provide a comprehensive overview of current research, highlight the clinical relevance of immune aging, and identify gaps in knowledge that require further investigation.
+        </p>
+      </article>
+
+      <article class="detail-card" id="pub-2">
+        <h3 class="detail-title">EXPOSOMIC INSIGHTS INTO ENVIRONMENTAL FACTORS INFLUENCING CELIAC DISEASE RISK</h3>
+        <p class="detail-abstract">
+            Celiac disease (CeD) incidence has increased over recent decades despite stable genetic predisposition, implicating early-life environmental exposures in disease onset. Using longitudinal data from 423 genetically at-risk children enrolled in the Celiac Disease Genomic Environmental Microbiome and Metabolomic (CDGEMM) study, we applied multivariate Cox proportional hazards modeling—adjusting for genotype, nationality, sex, and age—to identify exposures associated with time to CeD conversion. Fifty-six participants (mean age at conversion: 38.4 ± 18.8 months; 70% female) developed biopsy-confirmed CeD. Higher gluten intake during 12–15 months was associated with increased risk, while breastfeeding within the first 6 months was protective among Italians. American nationality conferred a strong protective effect, suggesting cultural or regional modifiers. These findings highlight population-specific environmental influences on CeD pathogenesis and support the need for integrative exposomic and microbiome analyses to refine risk prediction models.
+        </p>
+      </article>
+
+      <article class="detail-card" id="pub-3">
+        <h3 class="detail-title">Single-cell transcriptomics reveals colonic immune perturbations during amyloid-β driven Alzheimer's disease in mice        </h3>
+        <p class="detail-abstract">
+            The "gut-brain axis" is emerging as an important target in Alzheimer's disease (AD). However, immunological mechanisms underlying this axis remain poorly understood. Using single-cell RNA sequencing of the colon immune compartment in the 5XFAD amyloid-β (Aβ) mouse model, we uncovered AD-associated changes in ribosomal activity, oxidative stress, and BCR/plasma cell activity. Strikingly, levels of colon CXCR4 + antibody secreting cells (ASCs) were significantly reduced. This corresponded with accumulating CXCR4 + B cells and gut-specific IgA + cells in the brain and dura mater, respectively. Consistently, a chemokine ligand for CXCR4, CXCL12, was expressed at higher levels in 5XFAD glial cells and in in silico analyzed human brain studies, supporting altered neuroimmune trafficking. An inulin prebiotic fiber diet attenuated AD markers including Aβ plaques and overall frailty. These changes corresponded to an expansion of gut IgA + cells and rescued peripheral T regs levels. Our study points to a key glia-gut axis and potential targets against AD.
+        </p>
+      </article>
+    </section>
+
+    <!-- Cover Art (fan-out section) -->
+    <section class="papers-section" id="covers-section">
+      <div class="papers-container" id="covers-container">
+        <div class="stack-label" id="label-covers">Cover Art</div>
+        <div class="paper" style="--i:0;" data-cover="Final_Cover_Submission-01.png" data-id="cover-0">
+          <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+        <div class="paper" style="--i:1;" data-cover="Final_Cover_Submission-02.png" data-id="cover-1">
+          <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+        <div class="paper" style="--i:2;" data-cover="TPE_Cover.png" data-id="cover-2">
+            <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+        <div class="paper" style="--i:3;" data-cover="NatAging_Cover.png" data-id="cover-3">
+          <div class="paper-inner"><div class="paper-content"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cover Art details -->
+    <section class="details-section" id="covers-details">
+      <h2 class="details-heading">Cover Art</h2>
+
+      <article class="detail-card" id="cover-0">
+        <h3 class="detail-title">Chromatic Tesselations in Tissue Micrographs</h3>
+        <p class="detail-abstract">
+          Description — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue, arcu vel tristique porttitor, libero
+          nunc blandit lorem, non varius mi mi nec justo. Mauris a ex id eros tempor condimentum.
+        </p>
+        <p class="detail-contrib">
+          Notes — Concept, rendering, and final layout; prepared print assets and color-managed files for press.
+        </p>
+      </article>
+
+      <article class="detail-card" id="cover-1">
+        <h3 class="detail-title">Orbital Fields: A Study in Motion</h3>
+        <p class="detail-abstract">
+          Description — Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent dignissim,
+          dui nec malesuada sagittis, nisl felis accumsan dui, at pretium orci ante non sem.
+        </p>
+        <p class="detail-contrib">
+          Notes — Art direction, animation, and compositing; collaborated with editorial team on typography and captioning.
+        </p>
+      </article>
+
+      <article class="detail-card" id="cover-2">
+        <h3 class="detail-title">Aging Constellations</h3>
+        <p class="detail-abstract">
+          Description — Nam suscipit, mi in mattis condimentum, augue nulla faucibus odio, vitae interdum ipsum risus vitae tellus.
+          Integer vitae risus at ipsum convallis imperdiet eu non purus.
+        </p>
+        <p class="detail-contrib">
+          Notes — Illustrated vector base, shader passes for depth, curated final palette for print consistency.
+        </p>
+      </article>
+    </section>
+  </main>
+
+</body>
+</html>
