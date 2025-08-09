@@ -1,14 +1,25 @@
-# Run and deploy your AI Studio app
+# Max Manwaring-Mueller – Interactive Portfolio
+Welcome! This is the web-based portfolio of Max Manwaring-Mueller, showcasing selected projects, publications, and creative work.
 
-This contains everything you need to run your app locally.
+All work featured here has been created by or contributed to by Max, spanning scientific research, data visualization, cover art, and interactive design.
 
-## Run Locally
+🌐 Live Portfolio
+You can view the live site here: Visit Portfolio
 
-**Prerequisites:**  Node.js
+📌 About This Portfolio
+This site includes:
 
+Publications – summaries, abstracts, and personal contributions.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Cover Art – selected journal and project artwork.
+
+Interactive Design Elements – dynamic animations and user-friendly navigation.
+
+Links to full works where available.
+
+🛠️ Built With
+Vite + TypeScript
+
+React
+
+HTML/CSS animations
