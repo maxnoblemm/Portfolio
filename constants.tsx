@@ -104,7 +104,7 @@ export const PHOTOGRAPHY: Photography[] = Object.entries(imageModules).map(([pat
 export const BIO = {
   name: "Max Manwaring Mueller",
   title: "MSTP Student, University of Utah",
-  image: '/IMG_6704.jpeg', 
+  image: 'IMG_6704.jpeg', 
   visionText: `We are currently witnessing the convergence between two historically seperate fields: epidemiology and molecular biomedical sciences. This new frontier sits atop the framework of systems biology and is perhaps best known as precision medicine. For the first time, we have the power to take population-level data from across multiple systems or "omics"—genomics, proteomics, metabolomics—to understand the many levels at which complex biology operates, both under normal and diseased conditions.
 
   By marrying these fields, we may explore how environmental exposures and genetics interact to influence health at a population scale, while simultaneously revealing how an individual differs from or aligns with that population. This allows us to uncover deeply personal insights about health that were previously impossible to contextualize. I am motivated to study the genetic and environmental factors that contribute to autoimmune diseases with the hope of seeing earlier time-to-diagnoses and effective, personalized therapy. 
