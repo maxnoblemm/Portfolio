@@ -22,7 +22,7 @@ export const ART_WORKS: ArtWork[] = [
 ];
 
 // 1. VITE GLOB: Look in the actual file system path
-const imageModules = import.meta.glob('./Public/Photography/*.{png,jpg,jpeg,SVG}', { 
+const imageModules = import.meta.glob('./public/Photography/*.{png,jpg,jpeg,SVG}', { 
   eager: true, 
   query: 'url' 
 });
