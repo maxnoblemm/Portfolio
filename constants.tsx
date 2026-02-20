@@ -5,19 +5,19 @@ export const ART_WORKS: ArtWork[] = [
     id: 'art-1',
     title: 'Nature Aging: A DNA-Methylation Clock for Intrinsic Capacity',
     client: 'Furman Lab',
-    image: '/Covers/NatAging_Cover.png'
+    image: 'Covers/NatAging_Cover.png'
   },
   {
     id: 'art-2',
     title: 'Amyloid-β-driven Alzheimer\'s disease reshapes the colonic immune system in mice',
     client: 'Winer Lab',
-    image: '/Covers/Final_Cover_Submission-02.png'
+    image: 'Covers/Final_Cover_Submission-02.png'
   },
   {
     id: 'art-3',
     title: 'Multi-Omics Analysis Reveals Biomarkers That Contribute to Biological Age Rejuvenation in Response to Single-Blinded Randomized Placebo-Controlled Therapeutic Plasma Exchange',
     client: 'Furman Lab',
-    image: '/Covers/TPE_Cover.png'
+    image: 'Covers/TPE_Cover.png'
   }
 ];
 
@@ -43,7 +43,7 @@ export const PROJECTS: Project[] = [
     title: 'Amyloid-β-driven Alzheimer\'s disease reshapes the colonic immune system in mice',
     description: 'Developed bioinformatics pipelines to process 16S microbiome sequencing data.',
     tags: ['Aging', 'Microbiome', 'R'],
-    image: '/Covers/CellReportsAD.png', 
+    image: 'Covers/CellReportsAD.png', 
     link: 'https://doi.org/10.1016/j.celrep.2025.116109',
     type: 'Publication'
   },
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     title: 'Spaceflight as a Model of Accelerated Aging',
     description: 'Review positioning spaceflight as a model for environment-driven aging',
     tags: ['Spaceflight', 'Aging', 'Systems Biology'],
-    image: '/Covers/Manwaring_Mueller_Et_Al.jpg', 
+    image: 'Covers/Manwaring_Mueller_Et_Al.jpg', 
     type: 'Publication'
   },
   {
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
     title: 'Longitudinal Modeling of the Microbiome in Celiac Disease',
     description: 'Modeling gut microbiome development using CDGEMM Consortium data.',
     tags: ['Celiac Disease', 'Longitudinal Multi-omics', 'Autoimmunity'],
-    image: '/Covers/CDGEMM COVER.jpg', 
+    image: 'Covers/CDGEMM COVER.jpg', 
     link: 'https://doi.org/10.1016/S0016-5085(25)01156-4',
     type: 'Project'
   },
@@ -69,7 +69,7 @@ export const PROJECTS: Project[] = [
     title: 'Immunological biomarkers of aging',
     description: 'Review evaluates evolution of immunological biomarkers and organoids.',
     tags: ['Organoids', 'Aging', 'Immunology'],
-    image: '/Covers/ImmunologicalBiomarkers.png', 
+    image: 'Covers/ImmunologicalBiomarkers.png', 
     link: 'https://doi.org/10.1093/jimmun/vkae036',
     type: 'Publication'
   },
@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     title: 'Substrate Stiffness Dictates Unique Doxorubicin-induced Senescence-associated Secretory Phenotypes and Transcriptomic Signatures in Human Pulmonary Fibroblasts',
     description: 'Primary research finding substrate stiffness modulates senescent-cell secretory profile.',
     tags: ['Cell Culture', 'Aging', 'Senescence'],
-    image: '/Covers/Substrate_Stiffness.jpg', 
+    image: 'Covers/Substrate_Stiffness.jpg', 
     link: 'https://doi.org/10.1007/s11357-025-01507-x',
     type: 'Publication'
   }
