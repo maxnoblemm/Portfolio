@@ -10,6 +10,7 @@ import ConsultationModal from './components/ConsultationModal';
 import PublicationsSection from './components/PublicationsSection';
 import ArtworkSection from './components/ArtworkSection';
 import PhotographySection from './components/PhotographySection';
+import VideographySection from './components/VideographySection';
 
 // Data & Types
 import { PROJECTS, ART_WORKS, PHOTOGRAPHY, BIO } from './constants';
@@ -89,8 +90,8 @@ const App: React.FC = () => {
           <div ref={artworkRef} id="artwork"><ArtworkSection artworks={ART_WORKS} /></div>
           <div ref={photographyRef} id="photography"><PhotographySection photos={PHOTOGRAPHY} /></div>       
           
-          <div ref={videoRef} id="videography" className="min-h-screen flex items-center justify-center border-t border-slate-100 bg-[#1a1a1a]">
-            <h2 className="text-4xl font-black text-slate-600 uppercase tracking-widest">Videography (Coming Soon)</h2>
+          <div ref={videoRef} id="videography">
+            <VideographySection />
           </div>
 
           <div ref={aboutRef} id="about">{renderAbout()}</div>

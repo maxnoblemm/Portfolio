@@ -9,13 +9,13 @@ export const ART_WORKS: ArtWork[] = [
   },
   {
     id: 'art-2',
-    title: 'Amyloid-β-driven Alzheimer\'s disease reshapes the colonic immune system in mice',
+    title: 'Cell Reports: Amyloid-β-driven Alzheimer\'s disease reshapes the colonic immune system in mice',
     client: 'Winer Lab',
     image: 'Covers/Final_Cover_Submission-02.png'
   },
   {
     id: 'art-3',
-    title: 'Multi-Omics Analysis Reveals Biomarkers That Contribute to Biological Age Rejuvenation in Response to Single-Blinded Randomized Placebo-Controlled Therapeutic Plasma Exchange',
+    title: 'Aging Cell: Multi-Omics Analysis Reveals Biomarkers That Contribute to Biological Age Rejuvenation in Response to Single-Blinded Randomized Placebo-Controlled Therapeutic Plasma Exchange',
     client: 'Furman Lab',
     image: 'Covers/TPE_Cover.png'
   }
