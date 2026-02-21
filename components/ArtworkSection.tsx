@@ -22,7 +22,7 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: galleryWrapperRef.current, 
-        start: "top-=100px top", // Pins exactly when the title scrolls out of view
+        start: "top-=100px top", 
         end: "+=3000",
         scrub: 1,
         pin: true,
@@ -30,22 +30,24 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
     });
 
     // ACTION 1: Zoom & Re-center
-    // We use the "zoom" label to make both animations happen at the exact same time
     tl.to(panels, {
       width: "100vw",
       duration: 1,
       ease: "power2.inOut"
     }, "zoom");
 
-    // This pushes the image from the top of the container down into the perfect center
     tl.to('.art-image', {
       objectPosition: "50% 50%",
       duration: 1,
       ease: "power2.inOut"
     }, "zoom");
 
-    // Fade in text for the FIRST artwork near the end of the zoom
-    tl.to(texts[0], { opacity: 1, y: 0, duration: 0.3, ease: "power1.out" }, "zoom+=0.7");
+    // Fade and slide up the FIRST text block explicitly
+    tl.fromTo(texts[0], 
+      { opacity: 0, y: 50 }, // Forces it to start invisible and 50px lower
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 
+      "zoom+=0.6" // Starts 60% into the zoom animation
+    );
 
     // ACTION 2: The Pan
     panels.forEach((panel, i) => {
@@ -53,13 +55,19 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
       
       const panLabel = `pan${i}`;
       
+      // Changed ease to "power2.inOut" for smooth acceleration/deceleration
       tl.to(sliderRef.current, {
         x: () => `-${i * 100}vw`,
         duration: 1,
-        ease: "none"
+        ease: "power2.inOut" 
       }, panLabel);
 
-      tl.to(texts[i], { opacity: 1, y: 0, duration: 0.5, ease: "power1.out" }, `${panLabel}+=0.7`);
+      // Explicitly force the text to rise up dynamically as the pan finishes
+      tl.fromTo(texts[i], 
+        { opacity: 0, y: 50 }, 
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 
+        `${panLabel}+=0.6` // Wait until the pan is 60% finished before rising
+      );
     });
 
   }, { scope: containerRef });
@@ -70,7 +78,7 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
       {/* The Gradient Bridge */}
       <div className="w-full h-[15vh] bg-gradient-to-b from-transparent to-[#1a1a1a]"></div>
 
-      {/* The Title Block (Tightened padding to hug the art) */}
+      {/* The Title Block */}
       <div className="pt-0 pb-4 px-6 flex flex-col items-center justify-center">
         <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-white text-center">
           Scientific Artwork
@@ -89,21 +97,19 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
               ref={(el) => (panelsRef.current[i] = el)}
               className="h-full w-[33.333vw] relative flex-shrink-0 bg-[#1a1a1a] border-r border-white/5"
             >
-              {/* Padding adjusted to allow the image to sit high up initially */}
               <div className="w-full h-full px-4 pt-4 pb-12 md:px-12 md:pt-4 flex items-start justify-center">
                 <img 
                   src={art.image} 
                   alt={art.title} 
-                  // "art-image" class allows GSAP to target it.
-                  // Inline style anchors it to the top (0%) initially to kill the black void!
                   className="w-full h-full object-contain drop-shadow-2xl art-image"
                   style={{ objectPosition: "50% 0%" }} 
                 />
               </div>
               
+              {/* Note: I removed translate-y-8 from these classes so GSAP can take over */}
               <div 
                 ref={(el) => (textRefs.current[i] = el)}
-                className="absolute bottom-12 left-6 md:bottom-24 md:left-24 z-10 opacity-0 translate-y-8 max-w-xl pointer-events-none"
+                className="absolute bottom-12 left-6 md:bottom-24 md:left-24 z-10 opacity-0 max-w-xl pointer-events-none"
               >
                 <div className="bg-[#1a1a1a]/95 backdrop-blur-md p-6 md:p-8 border border-white/10 shadow-2xl">
                   <p className="mono text-[10px] font-bold text-[#dfb23c] uppercase tracking-widest mb-3">
