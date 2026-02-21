@@ -1,26 +1,5 @@
 import { Project, ArtWork, Photography } from './types';
 
-export const ART_WORKS: ArtWork[] = [
-  {
-    id: 'art-1',
-    title: 'Nature Aging: A DNA-Methylation Clock for Intrinsic Capacity',
-    client: 'Furman Lab',
-    image: 'Covers/NatAging_Cover.png'
-  },
-  {
-    id: 'art-2',
-    title: 'Cell Reports: Amyloid-β-driven Alzheimer\'s disease reshapes the colonic immune system in mice',
-    client: 'Winer Lab',
-    image: 'Covers/Final_Cover_Submission-02.png'
-  },
-  {
-    id: 'art-3',
-    title: 'Aging Cell: Multi-Omics Analysis Reveals Biomarkers That Contribute to Biological Age Rejuvenation in Response to Single-Blinded Randomized Placebo-Controlled Therapeutic Plasma Exchange',
-    client: 'Furman Lab',
-    image: 'Covers/TPE_Cover.png'
-  }
-];
-
 // 1. VITE GLOB: Look in the actual file system path
 const imageModules = import.meta.glob('./public/Photography/*.{png,jpg,jpeg,SVG}', { 
   eager: true, 
@@ -36,7 +15,6 @@ const formatFileName = (path: string) => {
     .replace(/\b\w/g, (l) => l.toUpperCase()) || 'Untitled';
 };
 
-
 export const PROJECTS: Project[] = [
   {
     id: 'pub-1',
@@ -47,14 +25,14 @@ export const PROJECTS: Project[] = [
     link: 'https://doi.org/10.1016/j.celrep.2025.116109',
     type: 'Publication'
   },
-  {
-    id: 'pub-2',
-    title: 'Spaceflight as a Model of Accelerated Aging',
-    description: 'Review positioning spaceflight as a model for environment-driven aging',
-    tags: ['Spaceflight', 'Aging', 'Systems Biology'],
-    image: 'Covers/Manwaring_Mueller_Et_Al.jpg', 
-    type: 'Publication'
-  },
+  // {
+  //   id: 'pub-2',
+  //   title: 'Spaceflight as a Model of Accelerated Aging',
+  //   description: 'Review positioning spaceflight as a model for environment-driven aging',
+  //   tags: ['Spaceflight', 'Aging', 'Systems Biology'],
+  //   image: 'Covers/Manwaring_Mueller_Et_Al.jpg', 
+  //   type: 'Publication'
+  // },
   {
     id: 'pub-3',
     title: 'Longitudinal Modeling of the Microbiome in Celiac Disease',
@@ -81,6 +59,27 @@ export const PROJECTS: Project[] = [
     image: 'Covers/Substrate_Stiffness.jpg', 
     link: 'https://doi.org/10.1007/s11357-025-01507-x',
     type: 'Publication'
+  }
+];
+
+export const ART_WORKS: ArtWork[] = [
+  {
+    id: 'art-1',
+    title: 'Nature Aging: A DNA-Methylation Clock for Intrinsic Capacity',
+    client: 'Furman Lab',
+    image: 'Covers/NatAging_Cover.png'
+  },
+  {
+    id: 'art-2',
+    title: 'Cell Reports: Amyloid-β-driven Alzheimer\'s disease reshapes the colonic immune system in mice',
+    client: 'Winer Lab',
+    image: 'Covers/Final_Cover_Submission-02.png'
+  },
+  {
+    id: 'art-3',
+    title: 'Aging Cell: Multi-Omics Analysis Reveals Biomarkers That Contribute to Biological Age Rejuvenation in Response to Single-Blinded Randomized Placebo-Controlled Therapeutic Plasma Exchange',
+    client: 'Furman Lab',
+    image: 'Covers/TPE_Cover.png'
   }
 ];
 
