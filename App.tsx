@@ -105,11 +105,43 @@ const App: React.FC = () => {
               <p className="text-xl font-black tracking-tight uppercase">MAX MANWARING MUELLER</p>
               <p className="mono text-[10px] text-[#dfb23c] font-bold uppercase tracking-widest">{BIO.title}</p>
             </div>
-            <div className="flex gap-12 mono text-[10px] font-bold uppercase text-slate-400">
-              <a href="#" className="hover:text-slate-900">GitHub</a>
-              <a href="#" className="hover:text-slate-900">LinkedIn</a>
-              <a href="#" className="hover:text-slate-900">ORCID</a>
+            
+            {/* --- UPDATED SOCIAL LINKS --- */}
+            <div className="flex flex-wrap justify-center gap-8 md:gap-12 mono text-[10px] font-bold uppercase text-slate-400">
+              <a 
+                href="https://github.com/maxnoblemm" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-slate-900 transition-colors"
+              >
+                GitHub
+              </a>
+              <a 
+                href="www.linkedin.com/in/max-manwaring-mueller-72280817a" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-slate-900 transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a 
+                href="https://orcid.org/0009-0008-2957-2236" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-slate-900 transition-colors"
+              >
+                ORCID
+              </a>
+              <a 
+                href="https://www.instagram.com/max.noblephoto/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-slate-900 transition-colors"
+              >
+                Instagram
+              </a>
             </div>
+            
             <p className="mono text-[8px] text-slate-300">EST 2026</p>
           </div>
         </footer>
