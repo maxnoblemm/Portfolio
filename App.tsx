@@ -29,75 +29,53 @@ const ProjectCard = ({ project }: { project: any }) => (
   </div>
 );
 
-const DataArtBackground: React.FC = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-[0.12]">
-      <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-        <g transform={`translate(${mousePos.x * 0.01}, ${mousePos.y * 0.01})`}>
-          <path d="M100,200 L150,250 L120,300 Z" fill="none" stroke="#dfb23c" strokeWidth="0.5" className="animate-slow-float" />
-          <circle cx="100" cy="200" r="1.5" fill="#dfb23c" />
-          <circle cx="150" cy="250" r="1.5" fill="#dfb23c" />
-          <circle cx="120" cy="300" r="1.5" fill="#dfb23c" />
-        </g>
-        <g transform={`translate(${800 + mousePos.x * -0.005}, ${100 + mousePos.y * 0.005})`}>
-          <path d="M0,0 H40 V25 H80 V60 H120 V100" fill="none" stroke="#2d5a27" strokeWidth="0.5" />
-          <text x="130" y="110" className="mono" fontSize="7" fill="#2d5a27">P {"<"} 0.01</text>
-        </g>
-      </svg>
-      <style>{`
-        @keyframes slowFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .animate-slow-float {
-          animation: slowFloat 20s ease-in-out infinite;
-        }
-      `}</style>
-    </div>
-  );
-};
-
 const PhotographyGallery = ({ photos }: { photos: Photography[] }) => {
   const [shuffledPhotos, setShuffledPhotos] = useState<Photography[]>([]);
   const [activePhoto, setActivePhoto] = useState<Photography | null>(null);
 
+  // Initial Shuffle
   useEffect(() => {
-    // Shuffle the array only once when the gallery is first mounted
     const shuffled = [...photos].sort(() => Math.random() - 0.5);
     setShuffledPhotos(shuffled);
     setActivePhoto(shuffled[0]);
   }, [photos]);
+
+  // Auto-cycle Logic (5 seconds)
+  useEffect(() => {
+    if (shuffledPhotos.length === 0 || !activePhoto) return;
+
+    const interval = setInterval(() => {
+      setActivePhoto((current) => {
+        if (!current) return shuffledPhotos[0];
+        const currentIndex = shuffledPhotos.findIndex(p => p.id === current.id);
+        const nextIndex = (currentIndex + 1) % shuffledPhotos.length;
+        return shuffledPhotos[nextIndex];
+      });
+    }, 5000); // 5000ms = 5 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [shuffledPhotos, activePhoto]);
 
   if (!activePhoto) return null;
 
   return (
     <div className="pt-32 pb-40 px-6">
       <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
         <div className="mb-12 space-y-4">
           <h2 className="text-6xl font-black tracking-tighter uppercase">Photography</h2>
         </div>
 
-        {/* Hero Image (Blown up) */}
+        {/* Hero Image with transition */}
         <div className="w-full h-[65vh] bg-slate-100 border border-slate-200 overflow-hidden shadow-sm">
           <img 
+            key={activePhoto.id} // Changing key triggers re-animation
             src={activePhoto.image} 
             alt="Selected view" 
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-cover animate-in fade-in duration-1000" 
           />
         </div>
 
-        {/* Thumbnails (Taking turns) */}
+        {/* Thumbnails */}
         <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
           {shuffledPhotos.map((photo) => (
             <button
@@ -136,12 +114,12 @@ const App: React.FC = () => {
         <div className="max-w-2xl space-y-12">
           {/* Main Headline */}
           <div className="space-y-4">
-            <h1 className="text-6xl lg:text-7xl font-black text-slate-900 leading-[1] tracking-tighter">
-              Analysis as the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dfb23c] to-[#5c8ca1]">
-                foundation.
-              </span>
-            </h1>
+          <h1 className="text-6xl lg:text-7xl font-black text-slate-900 leading-[1] tracking-tighter">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dfb23c] to-[#5c8ca1]">
+              Mapping
+            </span> <br />
+            the complexity of disease.
+          </h1>
           </div>
 
           {/* Vision Section */}
@@ -178,7 +156,6 @@ const App: React.FC = () => {
           alt={BIO.name} 
           className="w-full h-full object-cover object-top pt-12 md:pt-0" 
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#fcfcfb] to-transparent opacity-10 md:hidden" />
       </div>
     </div>
   );
@@ -292,7 +269,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <DataArtBackground />
       <Navbar currentView={view} setView={setView} onConsultClick={() => setIsModalOpen(true)} />
       
       <main className="transition-opacity duration-500">
@@ -305,7 +281,6 @@ const App: React.FC = () => {
   <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
     <div className="space-y-2 text-center md:text-left">
       <p className="text-xl font-black tracking-tight uppercase">MAX MANWARING MUELLER</p>
-      {/* Your title moved here */}
       <p className="mono text-[10px] text-[#dfb23c] font-bold uppercase tracking-widest">
         {BIO.title}
       </p>
@@ -320,7 +295,7 @@ const App: React.FC = () => {
       <a href="#" className="hover:text-slate-900 transition-colors">ORCID</a>
     </div>
     
-    <p className="mono text-[8px] text-slate-300">EST. 2020 / UNIVERSITY OF UTAH</p>
+    <p className="mono text-[8px] text-slate-300">EST 2026</p>
   </div>
 </footer>
     </div>

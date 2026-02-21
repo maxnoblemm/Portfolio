@@ -86,11 +86,10 @@ export const PROJECTS: Project[] = [
 
 // 2. AUTOMATED PHOTOGRAPHY EXPORT
 export const PHOTOGRAPHY: Photography[] = Object.entries(imageModules).map(([path, url], index) => {
-  // We need to make sure the URL doesn't have "/public" in it for the browser
   const browserUrl = (url as any).default || url;
   const cleanUrl = typeof browserUrl === 'string' 
-    ? browserUrl.replace('/public', '') 
-    : browserUrl;
+  ? browserUrl.replace('./public', import.meta.env.BASE_URL).replace('//', '/')
+  : browserUrl;
 
   return {
     id: `photo-${index}`,
@@ -107,7 +106,7 @@ export const BIO = {
   image: 'IMG_6704.jpeg', 
   visionText: `We are currently witnessing the convergence between two historically seperate fields: epidemiology and molecular biomedical sciences. This new frontier sits atop the framework of systems biology and is perhaps best known as precision medicine. For the first time, we have the power to take population-level data from across multiple systems or "omics"—genomics, proteomics, metabolomics—to understand the many levels at which complex biology operates, both under normal and diseased conditions.
 
-  By marrying these fields, we may explore how environmental exposures and genetics interact to influence health at a population scale, while simultaneously revealing how an individual differs from or aligns with that population. This allows us to uncover deeply personal insights about health that were previously impossible to contextualize. I am motivated to study the genetic and environmental factors that contribute to autoimmune diseases with the hope of seeing earlier time-to-diagnoses and effective, personalized therapy. 
+  By marrying these fields, we may explore how environmental exposures and genetics interact to influence health at a population scale, while simultaneously revealing how an individual differs from or aligns with that population. This shift may enable a level of persoanlized medicine and health-tracking never seen before. I am motivated to pursue this research within the context of autoimmune disease, with the goal of understanding how ones' environment, genetics, and the interaction between both may be linked with protection or increased risk of disease. Such knowledge can lead to earlier time-to-diagnosis and effective, personalized therapy, which I believe is central to the treatment and prevention of of chronic conditions. 
   
   My perspective on this is informed by my own journey through the healthcare system. While our medical system is capable of incredible things, it is no secret many find themselves lost in what can only be described as a "diagnostic odyssey", a journey which may unfold over years of visits, referals, and unknowns. This is not to say the current system is failing, but that there is ample room for growth in how we transition from managing symptoms to understanding the root causes of systemic failure.
   
