@@ -30,6 +30,21 @@
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: var(--bg-paper); }
         ::-webkit-scrollbar-thumb { background: #d0d0d0; }
+
+        /* --- NEW: 3D Flip Rules for Preloader --- */
+        .perspective-\[1000px\] {
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* Safari fallback */
+        }
+        .rotate-x-180 {
+            transform: rotateX(180deg);
+        }
     </style>
     <script type="importmap">
     {
