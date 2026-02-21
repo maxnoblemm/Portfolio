@@ -1,49 +1,28 @@
-
 import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import Navbar from './components/Navbar';
 import ConsultationModal from './components/ConsultationModal';
+import PublicationsSection from './components/PublicationsSection';
 import { PROJECTS, ART_WORKS, PHOTOGRAPHY, BIO } from './constants';
 import { AppView, Photography, Project } from './types';
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <div className="space-y-6 group">
-    <div className="aspect-[3/4] overflow-hidden bg-slate-100 border border-slate-200">
-      <img 
-        src={project.image} 
-        alt={project.title} 
-        className="w-full h-full object-cover filter contrast-125 grayscale hover:grayscale-0 transition-all duration-700" 
-      />
-    </div>
-    <div className="space-y-3">
-      <p className="mono text-[9px] font-bold text-[#dfb23c] uppercase">{project.type}</p>
-      <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
-      <p className="text-slate-500 text-sm font-light leading-relaxed">{project.description}</p>
-      <div className="flex flex-wrap gap-2 pt-2">
-        {project.tags.map(t => (
-          <span key={t} className="px-2 py-1 bg-slate-50 text-[8px] mono font-bold text-slate-400 uppercase">
-            {t}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-);
+// Register GSAP Plugins globally
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const PhotographyGallery = ({ photos }: { photos: Photography[] }) => {
   const [shuffledPhotos, setShuffledPhotos] = useState<Photography[]>([]);
   const [activePhoto, setActivePhoto] = useState<Photography | null>(null);
 
-  // Initial Shuffle
   useEffect(() => {
     const shuffled = [...photos].sort(() => Math.random() - 0.5);
     setShuffledPhotos(shuffled);
     setActivePhoto(shuffled[0]);
   }, [photos]);
 
-  // Auto-cycle Logic (5 seconds)
   useEffect(() => {
     if (shuffledPhotos.length === 0 || !activePhoto) return;
-
     const interval = setInterval(() => {
       setActivePhoto((current) => {
         if (!current) return shuffledPhotos[0];
@@ -51,9 +30,8 @@ const PhotographyGallery = ({ photos }: { photos: Photography[] }) => {
         const nextIndex = (currentIndex + 1) % shuffledPhotos.length;
         return shuffledPhotos[nextIndex];
       });
-    }, 5000); // 5000ms = 5 seconds
-
-    return () => clearInterval(interval); // Cleanup on unmount
+    }, 5000);
+    return () => clearInterval(interval);
   }, [shuffledPhotos, activePhoto]);
 
   if (!activePhoto) return null;
@@ -64,34 +42,13 @@ const PhotographyGallery = ({ photos }: { photos: Photography[] }) => {
         <div className="mb-12 space-y-4">
           <h2 className="text-6xl font-black tracking-tighter uppercase">Photography</h2>
         </div>
-
-        {/* Hero Image with transition */}
         <div className="w-full h-[65vh] bg-slate-100 border border-slate-200 overflow-hidden shadow-sm">
-          <img 
-            key={activePhoto.id} // Changing key triggers re-animation
-            src={activePhoto.image} 
-            alt="Selected view" 
-            className="w-full h-full object-cover animate-in fade-in duration-1000" 
-          />
+          <img key={activePhoto.id} src={activePhoto.image} alt="Selected view" className="w-full h-full object-cover animate-in fade-in duration-1000" />
         </div>
-
-        {/* Thumbnails */}
         <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
           {shuffledPhotos.map((photo) => (
-            <button
-              key={photo.id}
-              onClick={() => setActivePhoto(photo)}
-              className={`aspect-square overflow-hidden border-2 transition-all duration-300 ${
-                activePhoto.id === photo.id 
-                  ? 'border-[#dfb23c] scale-105 shadow-md opacity-100' 
-                  : 'border-transparent hover:border-slate-300 opacity-60 hover:opacity-100'
-              }`}
-            >
-              <img 
-                src={photo.image} 
-                alt="Thumbnail" 
-                className="w-full h-full object-cover" 
-              />
+            <button key={photo.id} onClick={() => setActivePhoto(photo)} className={`aspect-square overflow-hidden border-2 transition-all duration-300 ${activePhoto.id === photo.id ? 'border-[#dfb23c] scale-105 shadow-md opacity-100' : 'border-transparent hover:border-slate-300 opacity-60 hover:opacity-100'}`}>
+              <img src={photo.image} alt="Thumbnail" className="w-full h-full object-cover" />
             </button>
           ))}
         </div>
@@ -103,18 +60,16 @@ const PhotographyGallery = ({ photos }: { photos: Photography[] }) => {
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 1. Create Refs for each section
   const publicationsRef = useRef<HTMLDivElement>(null);
   const artworkRef = useRef<HTMLDivElement>(null);
   const photographyRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
 
-  // 2. The Scrolling Logic
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Helper functions to render the content inside the stacked divs
   const renderAbout = () => (
     <div className="min-h-screen flex flex-col md:flex-row">
       <section className="flex-1 flex items-start pt-32 md:pt-48 pb-20 px-6 md:px-20 bg-[#fcfcfb]">
@@ -162,54 +117,27 @@ const App: React.FC = () => {
     </div>
   );
 
-  const renderPublications = () => {
-    const currentProjects = PROJECTS.filter(p => p.type === 'Project');
-    const finishedPubs = PROJECTS.filter(p => p.type === 'Publication');
-    return (
-      <div className="pt-40 pb-40 px-6">
-        <div className="max-w-6xl mx-auto space-y-24">
-          <div className="border-b border-slate-100 pb-12">
-            <h2 className="text-6xl font-black tracking-tighter uppercase">Projects & Publications</h2>
-          </div>
-          <div className="space-y-10">
-            <h3 className="text-2xl font-bold tracking-tight uppercase text-slate-400">Current Projects</h3>
-            <div className="grid md:grid-cols-3 gap-16">
-            {currentProjects.map((p) => (
-              <ProjectCard key={p.id} project={p} />
-            ))}
-            </div>
-          </div>
-          <div className="space-y-10 pt-10 border-t border-slate-50">
-            <h3 className="text-2xl font-bold tracking-tight uppercase text-slate-400">Publications</h3>
-            <div className="grid md:grid-cols-3 gap-16">
-              {finishedPubs.map((p) => (
-                <a key={p.id} href={p.link} target="_blank" rel="noopener noreferrer" className="block space-y-6 group cursor-pointer">
-                  <ProjectCard project={p} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen">
-      {/* 3. Pass the scroll handlers to Navbar */}
       <Navbar 
         onPubsClick={() => scrollToSection(publicationsRef)}
         onArtClick={() => scrollToSection(artworkRef)}
         onPhotoClick={() => scrollToSection(photographyRef)}
+        onVideoClick={() => scrollToSection(videoRef)}
         onAboutClick={() => scrollToSection(aboutRef)}
       />
       
       <main>
-        {/* 4. All sections stacked on top of each other */}
-        <div ref={publicationsRef}>{renderPublications()}</div>
-        <div ref={artworkRef}>{renderArtwork()}</div>
-        <div ref={photographyRef}><PhotographyGallery photos={PHOTOGRAPHY} /></div>
-        <div ref={aboutRef}>{renderAbout()}</div>
+        <div ref={publicationsRef} id="publications"><PublicationsSection projects={PROJECTS} /></div>
+        <div ref={artworkRef} id="artwork">{renderArtwork()}</div>
+        <div ref={photographyRef} id="photography"><PhotographyGallery photos={PHOTOGRAPHY} /></div>
+        
+        {/* Placeholder for Videography */}
+        <div ref={videoRef} id="videography" className="min-h-screen flex items-center justify-center border-t border-slate-100 bg-[#1a1a1a]">
+           <h2 className="text-4xl font-black text-slate-600 uppercase tracking-widest">Videography (Coming Soon)</h2>
+        </div>
+
+        <div ref={aboutRef} id="about">{renderAbout()}</div>
       </main>
 
       <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
