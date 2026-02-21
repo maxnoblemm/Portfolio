@@ -102,7 +102,7 @@ export const PHOTOGRAPHY: Photography[] = Object.entries(imageModules).map(([pat
 // constants.tsx
 export const BIO = {
   name: "Max Manwaring Mueller",
-  title: "MSTP Student, University of Utah",
+  title: "MSTP Student",
   image: 'IMG_6704.jpeg', 
   visionText: `I have found interest in a field of science and medicine that lies at the intersection of epidemiology and molecular biology. As "omics"—genomics, proteomics, and metabolomics— are becoming increasingly affordable, analyzing many layers of a biological system across populations has become a feasible method of capturing the complexity of chronic disease. As computational tools improve and databases grow, I believe we will begin to untangle the deeply complicated dynamics of immune, neural, and microbial systems and their involvement in health and disease. This is truly an exciting time to explore the fundamental connections between our internal biology and the world we inhabit.
 
