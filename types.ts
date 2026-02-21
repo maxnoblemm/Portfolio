@@ -41,4 +41,4 @@ export interface Experience {
   description: string[];
 }
 
-export type AppView = 'home' | 'bioinformatics' | 'publications' | 'artwork' | 'photography';
+export type AppView = 'home' | 'about me' | 'bioinformatics' | 'publications' | 'artwork' | 'photography';
