@@ -5,6 +5,8 @@ import { useGSAP } from '@gsap/react';
 import Navbar from './components/Navbar';
 import ConsultationModal from './components/ConsultationModal';
 import PublicationsSection from './components/PublicationsSection';
+import ArtworkSection from './components/ArtworkSection';
+import PhotographySection from './components/PhotographySection';
 import { PROJECTS, ART_WORKS, PHOTOGRAPHY, BIO } from './constants';
 import { AppView, Photography, Project } from './types';
 
@@ -96,27 +98,6 @@ const App: React.FC = () => {
     </div>
   );
 
-  const renderArtwork = () => (
-    <div className="pt-40 pb-40 px-6 bg-[#f8f8f7]">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-6xl font-black tracking-tighter uppercase mb-24">Cover Art</h2>
-        <div className="grid md:grid-cols-3 gap-10">
-          {ART_WORKS.map((art) => (
-            <div key={art.id} className="group cursor-crosshair">
-              <div className="aspect-[3/4] overflow-hidden bg-slate-200 border border-slate-300">
-                <img src={art.image} alt={art.title} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-110" />
-              </div>
-              <div className="mt-6">
-                <h4 className="text-lg font-bold tracking-tight">{art.title}</h4>
-                <p className="text-[10px] mono text-slate-400 uppercase mt-1">{art.client}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen">
       <Navbar 
@@ -129,10 +110,9 @@ const App: React.FC = () => {
       
       <main>
         <div ref={publicationsRef} id="publications"><PublicationsSection projects={PROJECTS} /></div>
-        <div ref={artworkRef} id="artwork">{renderArtwork()}</div>
-        <div ref={photographyRef} id="photography"><PhotographyGallery photos={PHOTOGRAPHY} /></div>
-        
-        {/* Placeholder for Videography */}
+        <div ref={artworkRef} id="artwork"><ArtworkSection artworks={ART_WORKS} /></div>
+        <div ref={photographyRef} id="photography"><PhotographySection photos={PHOTOGRAPHY} /></div>       
+         {/* Placeholder for Videography */}
         <div ref={videoRef} id="videography" className="min-h-screen flex items-center justify-center border-t border-slate-100 bg-[#1a1a1a]">
            <h2 className="text-4xl font-black text-slate-600 uppercase tracking-widest">Videography (Coming Soon)</h2>
         </div>

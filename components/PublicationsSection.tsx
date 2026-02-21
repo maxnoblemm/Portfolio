@@ -122,7 +122,7 @@ const PublicationsSection: React.FC<Props> = ({ projects }) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top top",
+        start: "top-=50px top", // Pins exactly when the title scrolls out of view
         end: "+=2500",
         scrub: 1,
         pin: true,
