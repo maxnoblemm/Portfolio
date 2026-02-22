@@ -55,7 +55,6 @@ const Preloader: React.FC<Props> = ({ onComplete }) => {
     const nameStr = "MAX MANWARING MUELLER";
     const subStr = "PORTFOLIO";
     const centerRow = Math.floor(grid.rows / 2);
-    const centerCol = Math.floor(grid.cols / 2);
     const nameStartCol = Math.floor((grid.cols - nameStr.length) / 2);
     const subStartCol = Math.floor((grid.cols - subStr.length) / 2);
 
