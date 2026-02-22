@@ -60,7 +60,7 @@ const App: React.FC = () => {
             <div className="text-lg text-slate-600 font-light leading-relaxed whitespace-pre-line">{BIO.purposeText}</div>
           </div>
           <div className="pt-4">
-            <button onClick={() => setIsModalOpen(true)} className="px-10 py-5 bg-slate-900 text-white font-bold tracking-tight hover:bg-slate-800 transition-all uppercase text-xs">Substack</button>
+            <button onClick={() => setIsModalOpen(true)} className="px-10 py-5 bg-slate-900 text-white font-bold tracking-tight hover:bg-slate-800 transition-all uppercase text-xs">Contact ME</button>
           </div>
         </div>
       </section>

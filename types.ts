@@ -42,3 +42,11 @@ export interface Experience {
 }
 
 export type AppView = 'home' | 'about me' | 'bioinformatics' | 'publications' | 'artwork' | 'photography';
+
+export interface Figure {
+  id: string;
+  title: string;
+  tool: string;
+  description: string;
+  image: string;
+}

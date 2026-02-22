@@ -23,7 +23,8 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
       scrollTrigger: {
         trigger: galleryWrapperRef.current, 
         start: "top-=100px top", 
-        end: "+=3000",
+        // Dynamically calculates scroll length based on how many covers you have
+        end: () => `+=${panels.length * 1000}`, 
         scrub: 1,
         pin: true,
       }
@@ -44,9 +45,9 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
 
     // Fade and slide up the FIRST text block explicitly
     tl.fromTo(texts[0], 
-      { opacity: 0, y: 50 }, // Forces it to start invisible and 50px lower
+      { opacity: 0, y: 50 }, 
       { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 
-      "zoom+=0.6" // Starts 60% into the zoom animation
+      "zoom+=0.6" 
     );
 
     // ACTION 2: The Pan
@@ -55,19 +56,19 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
       
       const panLabel = `pan${i}`;
       
-      // Changed ease to "power2.inOut" for smooth acceleration/deceleration
       tl.to(sliderRef.current, {
         x: () => `-${i * 100}vw`,
         duration: 1,
         ease: "power2.inOut" 
       }, panLabel);
 
-      // Explicitly force the text to rise up dynamically as the pan finishes
-      tl.fromTo(texts[i], 
-        { opacity: 0, y: 50 }, 
-        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 
-        `${panLabel}+=0.6` // Wait until the pan is 60% finished before rising
-      );
+      if (texts[i]) {
+        tl.fromTo(texts[i], 
+          { opacity: 0, y: 50 }, 
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 
+          `${panLabel}+=0.6` 
+        );
+      }
     });
 
   }, { scope: containerRef });
@@ -106,7 +107,6 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
                 />
               </div>
               
-              {/* Note: I removed translate-y-8 from these classes so GSAP can take over */}
               <div 
                 ref={(el) => (textRefs.current[i] = el)}
                 className="absolute bottom-12 left-6 md:bottom-24 md:left-24 z-10 opacity-0 max-w-xl pointer-events-none"
