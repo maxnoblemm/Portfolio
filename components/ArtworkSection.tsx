@@ -34,13 +34,13 @@ const ArtworkSection: React.FC<Props> = ({ artworks }) => {
     tl.to(panels, {
       width: "100vw",
       duration: 1,
-      ease: "power2.inOut"
+      ease: "power2.in"
     }, "zoom");
 
     tl.to('.art-image', {
       objectPosition: "50% 50%",
       duration: 1,
-      ease: "power2.inOut"
+      ease: "power2.Out"
     }, "zoom");
 
     // Fade and slide up the FIRST text block explicitly
